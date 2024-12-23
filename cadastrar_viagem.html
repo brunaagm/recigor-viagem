@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastrar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registrar.css') }}">
     <title>Diário de Viagens</title>
 </head>
-
 <body>
     <h1 class="site-title">Diário de Viagens!</h1>
     <div class="container">
-        <h2></h2>
+        <h2>Cadastrar Viagem</h2>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -23,7 +21,7 @@
         {% endif %}
         {% endwith %}
 
-        <form method="POST" action="{{ url_for('registrar') }}">
+        <form method="POST" action="{{ url_for('registro') }}">
             <label>Nome do destino:</label>
             <input type="text" name="destino_name" placeholder="Digite o nome do destino" required>
             <br><br>
@@ -39,10 +37,10 @@
         <h2>Viagens cadastradas</h2>
         <ul>
             {% for viagem in viagens %}
-            <li>{{ viagem.Destino }} - {{ viagem.Data }} - <a
-                    href="{{ url_for('excluir_viagem', id=viagem.id) }}">Remover</a></li>
+            <li>{{ viagem.Destino }} - {{ viagem.Data }} - {{ viagem.descricao }} - 
+                <a href="{{ url_for('excluir_viagem', id=viagem.id) }}">Remover</a></li>
             {% endfor %}
         </ul>
+    </div>
 </body>
-
 </html>
